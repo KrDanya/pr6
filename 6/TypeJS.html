@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Тестування</title>
+	<meta charset="utf-8">
+	<style>
+		.container {
+			width: 500px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			text-align: center;
+		}
+
+		table {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		th, td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+
+		.checkButton {
+			padding: 10px 20px;
+			font-size: 16px;
+		}
+
+		.result {
+			margin-top: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Тестування</h1>
+		<table>
+			<tr>
+				<th>Логічний вираз</th>
+				<th>Відповідь</th>
+			</tr>
+			<tr>
+				<td>(A ⊕ B)</td>
+				<td>
+					<input type="radio" name="question1" value="true"> Так<br>
+					<input type="radio" name="question1" value="false"> Ні
+				</td>
+			</tr>
+			<tr>
+				<td>(C ∧ D)</td>
+				<td>
+					<input type="radio" name="question2" value="true"> Так<br>
+					<input type="radio" name="question2" value="false"> Ні
+				</td>
+			</tr>
+			<tr>
+				<td>(E ∨ F)</td>
+				<td>
+					<input type="radio" name="question3" value="true"> Так<br>
+					<input type="radio" name="question3" value="false"> Ні
+				</td>
+			</tr>
+		</table>
+		<button class="checkButton" onclick="checkAnswers()">Перевірити</button>
+		<p class="result" id="result"></p>
+	</div>
+
+	<script>
+		function checkAnswers() {
+			const resultElement = document.getElementById("result");
+
+			// Отримання вибраних відповідей
+			const answer1 = document.querySelector('input[name="question1"]:checked');
+			const answer2 = document.querySelector('input[name="question2"]:checked');
+			const answer3 = document.querySelector('input[name="question3"]:checked');
+
+			// Перевірка наявності відповідей
+			if (!answer1 || !answer2 || !answer3) {
+				resultElement.textContent = "Будь ласка, виберіть відповідь для кожного питання.";
+				resultElement.style.color = "red";
+				return;
+			}
+
+			// Перевірка правильності відповідей
+			const expectedAnswers = ["true", "false", "true"]; // Очікувані відповіді
+
+			if (answer1.value === expectedAnswers[0] &&
+			answer2.value === expectedAnswers[1] &&
+			answer3.value === expectedAnswers[2]
+		) {
+			resultElement.textContent = "Відповіді правильні!";
+			resultElement.style.color = "green";
+		} else {
+			resultElement.textContent = "Є неправильні відповіді!";
+			resultElement.style.color = "red";
+		}
+	}
+</script>
+</body>
+</html>
+			
